@@ -2,6 +2,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
 }
+a {
+  cursor: pointer;
+}
 .header {
   background-color: #181818;
   width: 100%;
@@ -32,11 +35,11 @@ body {
   border-radius: 30px;
 }
 .header-content input:focus {
-  outline:0;
+  outline: 0;
 }
 .sideMenu {
   font-size: 30px;
-  cursor:pointer;
+  cursor: pointer;
   color: #fff;
   margin-top: -10px;
   display: inline-block;
@@ -61,7 +64,7 @@ body {
   text-decoration: none;
   color: #fff;
   display: block;
-  transition: 0.5s;;
+  transition: 0.5s;
   border-bottom: 1px solid #000;
 }
 .sidenav a:hover {
@@ -99,17 +102,10 @@ body {
   color: #fff;
   border-radius: 10px;
 }
+.contact-list-header th:last-child {
+  width: 10%;
+}
 .contact-list-body {
-  /* margin-top: 10px;
-  width: 100%;
-  height: 40px;
-  background-color: #D3D3D3;
-  text-align: center;
-  padding: 10px 0;
-  box-sizing: border-box;
-  border-radius: 10px;
-  display: table; */
-
   box-sizing: border-box;
   cursor: default;
   display: table;
@@ -121,8 +117,15 @@ body {
   border-spacing: 0 10px;
 }
 .contact-list-body tr {
-  background: #D3D3D3;
+  background: #e8e8e8;
   height: 40px;
+}
+.contact-list-body tr:hover {
+  background: #d3d3d3;
+}
+.contact-list-body tr:hover .del-icon,
+.contact-list-body tr:hover .edt-icon {
+  display: inline-block;
 }
 .contact-list-body td {
   overflow: hidden;
@@ -133,6 +136,7 @@ body {
   border-bottom-left-radius: 10px;
 }
 .contact-list-body td:last-child {
+  width: 10%;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -140,16 +144,60 @@ body {
   margin-top: 10px;
   width: 100%;
   height: 40px;
-  background-color: #D3D3D3;
+  background-color: #d3d3d3;
   text-align: center;
   padding: 10px 0;
   box-sizing: border-box;
   border-radius: 10px;
 }
-.del-icon,.edt-icon {
+.del-icon,
+.edt-icon {
+  display: none;
   border: none;
   background-color: transparent;
   font-size: 20px;
+}
+.modal-box-container {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-box-content {
+  position: fixed;
+  width: 700px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fefefe;
+  margin: auto;
+  padding: 10px;
+  border : 1px solid #888;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  animation: blowUpContent 1s;
+  -webkit-animation: blowUpContent 1s;
+}
+@keyframes blowUpContent {
+  from {opacity:0}
+  to {opacity:1}
+}
+@-webkit-keyframes blowUpContent {
+  from {opacity:0}
+  to {opacity:1}
+}
+.modal-box-header{
+  padding: 2px 5px;
+  font-size: 20px;
+  border-bottom: 1px solid #888;
+}
+.form-name, .form-email, .form-phone {
+  display: flex;
+  width: 100%;
 }
 @media only screen and (max-width: 600px) {
   .help {
@@ -167,14 +215,15 @@ body {
   .header-content input {
     font-size: 90%;
   }
-  .contact-list-body tr td:not(:first-child):not(:last-child), .contact-list-header tr th:not(:first-child):not(:last-child)
-  {
+  .contact-list-body tr td:not(:first-child):not(:last-child),
+  .contact-list-header tr th:not(:first-child):not(:last-child) {
     display: none;
   }
   .contact-list-header {
     height: 40px;
   }
-  .del-icon,.edt-icon {
+  .del-icon,
+  .edt-icon {
     font-size: 15px;
   }
 }

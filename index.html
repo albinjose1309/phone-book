@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,48 +9,62 @@
   <link rel="stylesheet" href="style.css">
   <script src="script.js" charset="utf-8"></script>
 </head>
+
 <body onload="init()">
-<div id="main">
-  <div class="header">
-    <span class="sideMenu" onclick="sideNav()">&#9776;</span>
-    <div class="header-content">
-      <input class="search" type="text" name="search" value="" placeholder="Search">
-      <a class="help" href="#">Help</a>
+  <div id="main">
+    <div class="header">
+      <span class="sideMenu" onclick="sideNav()">&#9776;</span>
+      <div class="header-content">
+        <input class="search" type="text" name="search" value="" placeholder="Search">
+        <a class="help" href="#">Help</a>
+      </div>
+    </div>
+    <div id="containerId" class="container">
+      <div class="container-header">
+        <table class="contact-list-header">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone number</th>
+            <th></th>
+          </tr>
+        </table>
+      </div>
+      <div class="container-body">
+        <table class="contact-list-body" id="contact-list-id">
+        </table>
+        <div class="data-null" id="data-null-id">No Contacts</div>
+      </div>
     </div>
   </div>
-  <div id="containerId" class="container">
-    <div class="container-header">
-      <table class="contact-list-header">
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Phone number</th>
-          <th></th>
-        </tr>
-      </table>
+  <div id="mySidenav" class="sidenav">
+    <a id="add-contact" onclick="addContact()">Add</a>
+    <a>Settings</a>
+    <a>Help</a>
+  </div>
+  <div class="modal-box-container" id="modal-box-add-contact">
+    <div class="modal-box-content">
+      <div class="modal-box-header">
+        <span>Modal Header</span>
+      </div>
+      <div class="modal-box-body">
+        <div class="form-name">
+          <input type="text" placeholder="First Name" name="firstName">
+          <input type="text" placeholder="Last Name" name="lastName">
+        </div>
+        <div class="form-email">
+          <input type="email" placeholder="Email" name="emailId">
+        </div>
+        <div class="form-phone">
+        <input type="text" placeholder="Phone" name="phoneNumber">
+        </div>
+      </div>
+      <div class="modal-box-footer">
+        <button onclick="closeModal()">Cancel</button>
+        <button type="submit" onclick="addContact()">Save</button>
+      </div>
     </div>
-    <div class="container-body">
-      <table class="contact-list-body" id="contact-list-id">
-      </table>
-      <div class="data-null" id="data-null-id">No Contacts</div>
-    </div>
   </div>
-</div>
-<div id="mySidenav" class="sidenav">
-  <a id="add-contact"  onclick="addContact()">Add</a>
-  <a href="#">Settings</a>
-  <a href="#">Help</a>
-</div>
-<div class="model-box-container">
-  <div class="model-box-header">
-    
-  </div>
-  <div class="model-box-content">
-
-  </div>
-  <div class="model-box-footer">
-
-  </div>
-</div>
 </body>
+
 </html>

@@ -111,9 +111,20 @@ function deleteContact(rowNum, index) {
   console.log("index >>>>", index);
   console.log(data);
   document.getElementById("contact-list-id").deleteRow(rowNum.parentNode.parentNode.rowIndex);
+  if(document.getElementById("contact-list-id").rows.length === 0) {
+    document.getElementById("contact-list-id").style.display = "none";
+    document.getElementById("data-null-id").style.display = "";
+  }
 }
 function addContact() {
-  console.log("clicked")
+  var modal = document.getElementById("modal-box-add-contact");
+  modal.style.display = "block";
+  console.log("clicked");
+}
+function closeModal() {
+  var modal = document.getElementById("modal-box-add-contact");
+  modal.style.display = "none";
+  console.log("inside close function")
 }
 function sideNav() {
   sideNavStatus = !sideNavStatus;
