@@ -126,6 +126,12 @@ function closeModal() {
   modal.style.display = "none";
   console.log("inside close function")
 }
+window.onclick = function(event) {
+  var modal = document.getElementById("modal-box-add-contact");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 function sideNav() {
   sideNavStatus = !sideNavStatus;
   if(sideNavStatus) {

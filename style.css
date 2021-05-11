@@ -1,4 +1,4 @@
-body {
+  body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
 }
@@ -169,7 +169,7 @@ a {
 }
 .modal-box-content {
   position: fixed;
-  width: 700px;
+  width: 500px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -191,13 +191,55 @@ a {
   to {opacity:1}
 }
 .modal-box-header{
-  padding: 2px 5px;
+  padding: 10px 5px;
   font-size: 20px;
-  border-bottom: 1px solid #888;
+  border-bottom: 1px solid #dadce0;
 }
-.form-name, .form-email, .form-phone {
-  display: flex;
+.modal-box-body {
+  padding: 10px;
+}
+.form-name , .form-email , .form-phone {
   width: 100%;
+}
+.modal-box-body input {
+  box-sizing: border-box;
+  height: 30px;
+  border: none;
+  border-bottom: 3px solid #d3d3d3;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.form-name input {
+  width: 43%;
+}
+.form-email input, .form-phone input{
+  width: 87%; 
+}
+.modal-box-body label{
+  text-align: center; 
+}
+.modal-box-body label i{
+  width: 10%;
+}
+.modal-box-body input:focus {
+  border-bottom: 3px solid #000; 
+  outline: 0; 
+}
+.modal-box-footer {
+  border-top: 1px solid #dadce0;
+  padding: 5px;
+}
+.modal-box-footer button {
+  margin: 10px 15px;
+  float: right;
+  background-color: transparent;
+  border: none;
+  color: #000;
+  font-weight: bold;
+  font-size: 15 px;
+}
+.modal-box-footer button:hover {
+  color: #1a73e8;
 }
 @media only screen and (max-width: 600px) {
   .help {

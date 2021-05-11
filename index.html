@@ -45,23 +45,26 @@
   <div class="modal-box-container" id="modal-box-add-contact">
     <div class="modal-box-content">
       <div class="modal-box-header">
-        <span>Modal Header</span>
+        <span>Create Contact</span>
       </div>
       <div class="modal-box-body">
         <div class="form-name">
+          <label><i class="fa fa-user-circle fa-2x" aria-hidden="true"></i></label>
           <input type="text" placeholder="First Name" name="firstName">
           <input type="text" placeholder="Last Name" name="lastName">
         </div>
         <div class="form-email">
+          <label><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></label>
           <input type="email" placeholder="Email" name="emailId">
         </div>
         <div class="form-phone">
+          <label><i class="fa fa-phone-square fa-2x" aria-hidden="true"></i></label>
         <input type="text" placeholder="Phone" name="phoneNumber">
         </div>
       </div>
       <div class="modal-box-footer">
-        <button onclick="closeModal()">Cancel</button>
         <button type="submit" onclick="addContact()">Save</button>
+        <button onclick="closeModal()">Cancel</button>
       </div>
     </div>
   </div>
