@@ -214,11 +214,13 @@ a {
 }
 .form-email input, .form-phone input{
   width: 87%; 
-}
-.modal-box-body label{
-  text-align: center; 
-}
-.modal-box-body label i{
+  }
+  .modal-box-body label{
+
+    text-align: center; 
+  }
+.modal-box-body label i{ 
+  padding-top: 20px;
   width: 10%;
 }
 .modal-box-body input:focus {

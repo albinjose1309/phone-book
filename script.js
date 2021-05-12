@@ -95,36 +95,61 @@ function setData() {
     cell1.innerHTML = contact.name;
     cell2.innerHTML = contact.email;
     cell3.innerHTML = contact.phone;
-    cell4.innerHTML = `<button class="del-icon" title="delete" onclick="deleteContact(this, ${contact.id})"><i class='fa fa-trash-o'></i></button>&nbsp<button class="edt-icon" onclick="edit(index) title="edit"><i class="fa fa-edit"></i></button>`;
+    cell4.innerHTML = `<button class="del-icon" title="delete" onclick="deleteContact(this, ${contact.id})"><i class='fa fa-trash-o'></i></button>&nbsp;
+    <button class="edt-icon" onclick="editContactModal(${contact.id})" title="edit"><i class="fa fa-edit"></i></button>`;
     cell1.setAttribute("title", contact.name);
     cell2.setAttribute("title", contact.email);
     cell3.setAttribute("title", contact.phone);
   }
 }
+function addContact() {
+  var modal = document.getElementById("modal-box-add-contact");
+  document.getElementById("contact-edit").style.display = "none";
+  document.getElementById("contact-add").style.display = "inline-block";
+  document.getElementById("contact-update").style.display = "none";
+  document.getElementById("contact-save").style.display = "inline-block";
+  modal.style.display = "block";
+}
+function editContactModal(id) {
+  var modal = document.getElementById("modal-box-add-contact");
+  document.getElementById("contact-add").style.display = "none";
+  document.getElementById("contact-edit").style.display = "inline-block";
+  document.getElementById("contact-save").style.display = "none";
+  document.getElementById("contact-update").style.display = "inline-block";
+  modal.style.display = "block";
+  var fname = document.getElementById("fname");
+  var email = document.getElementById("email");
+  var phone = document.getElementById("phone");
+  for(var contact of data) {
+    if(id === contact.id) {
+      console.log(fname);
+      fname.value = contact.name;
+      email.value = contact.email;
+      phone.value = contact.phone;
+    }
+  } 
+}
+function updateContact() {
+}
 function deleteContact(rowNum, index) {
-  console.log("row number >>>>", rowNum.parentNode.parentNode.rowIndex);
-  for( var [i, contact] of data.entries()) {
+  if (confirm("Are you sure you want to delete this contact?")) {
+    for( var [i, contact] of data.entries()) {
     if(index === contact.id) {
       data.splice(i, 1);
     }
   }
-  console.log("index >>>>", index);
-  console.log(data);
   document.getElementById("contact-list-id").deleteRow(rowNum.parentNode.parentNode.rowIndex);
+  } else {
+    return;
+  }
   if(document.getElementById("contact-list-id").rows.length === 0) {
     document.getElementById("contact-list-id").style.display = "none";
     document.getElementById("data-null-id").style.display = "";
   }
 }
-function addContact() {
-  var modal = document.getElementById("modal-box-add-contact");
-  modal.style.display = "block";
-  console.log("clicked");
-}
 function closeModal() {
   var modal = document.getElementById("modal-box-add-contact");
   modal.style.display = "none";
-  console.log("inside close function")
 }
 window.onclick = function(event) {
   var modal = document.getElementById("modal-box-add-contact");
