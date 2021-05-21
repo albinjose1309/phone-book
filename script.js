@@ -1,17 +1,105 @@
 // init varables;
-var sideNavStatus = screen.width < 500 ? true: false;
-var contactList = false;
+var sideNavStatus = screen.width < 500 ? true : false;
 var contactId = null;
 var tableRowIndex = null;
 var modal = null;
 var table = null;
 var dataNull = null;
 var formData = null;
-var data = [];
+var dataCount = 0;
+var data = [
+  {
+    id: 0,
+    name: "albin 0",
+    email: "albin@email.com",
+    phone: "9999999999",
+  },
+  {
+    id: 1,
+    name: "albin 1",
+    email: "albin@email.com",
+    phone: "9999999999",
+  },
+  {
+    id: 2,
+    name: "albin 2",
+    email: "albin@email.com",
+    phone: "9999999999",
+  },
+  {
+    id: 3,
+    name: "albin 3",
+    email: "albin@email.com",
+    phone: "9999999999",
+  },
+  {
+    id: 4,
+    name: "albin 4",
+    email: "albin@email.com",
+    phone: "9999999999",
+  },
+  {
+    id: 5,
+    name: "albin 5",
+    email: "albin@email.com",
+    phone: "9999999999",
+  },
+  {
+    id: 6,
+    name: "albin 6",
+    email: "albin@email.com",
+    phone: "9999999999",
+  },
+  {
+    id: 7,
+    name: "albin 7",
+    email: "albin@email.com",
+    phone: "9999999999",
+  },
+  {
+    id: 8,
+    name: "albin 8",
+    email: "albin@email.com",
+    phone: "9999999999",
+  },
+  {
+    id: 9,
+    name: "albin 9",
+    email: "albin@email.com",
+    phone: "9999999999",
+  },
+  {
+    id: 10,
+    name: "albin 10",
+    email: "albin@email.com",
+    phone: "9999999999",
+  },
+  {
+    id: 11,
+    name: "albin 11",
+    email:
+      "albinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn@email.com",
+    phone: "9999999999",
+  },
+  {
+    id: 12,
+    name: "albin 12",
+    email: "albin@email.com",
+    phone: "9999999999",
+  },
+  {
+    id: 13,
+    name: "albin 13",
+    email: "albin@email.com",
+    phone: "9999999999",
+  },
+];
 function setData() {
-  if(data.length > 0) {
-    for(var contact of data) {
-      var row = table.insertRow(contact.id);
+  if (data.length > 0) {
+    var counter = 0;
+    dataCount = 0;
+    for (var contact of data) {
+      var row = table.insertRow(counter);
       var cell1 = row.insertCell(0);
       var cell2 = row.insertCell(1);
       var cell3 = row.insertCell(2);
@@ -24,52 +112,69 @@ function setData() {
       cell1.setAttribute("title", contact.name);
       cell2.setAttribute("title", contact.email);
       cell3.setAttribute("title", contact.phone);
-    } 
+      dataCount++;
+      counter++;
+    }
   } else {
-    table.style.display = "none";
-    dataNull.style.display = "";    
+    dataEmptyCase();
   }
 }
 function addContact() {
   openModalBox("add");
+  fname.value = "";
+  email.value = "";
+  phone.value = "";
 }
 function editContact(index, id) {
   tableRowIndex = index;
   openModalBox("edit");
   getFormData();
-  for(var contact of data) {
-    if(id === contact.id) {
+  for (var contact of data) {
+    if (id === contact.id) {
       contactId = contact.id;
       formData.fname.value = contact.name;
       formData.email.value = contact.email;
       formData.phone.value = contact.phone;
     }
-  } 
+  }
   formData = null;
 }
-function updateContact() { 
+function insertContact() {
+  console.log(dataCount);
   getFormData();
-  if(contactId !== null) {
-    for(var contact of data) {
-      if(contactId === contact.id) {
+  data.push({
+    id: dataCount,
+    name: formData.fname.value,
+    email: formData.email.value,
+    phone: formData.phone.value,
+  });
+  formData = null;
+  $("#contact-list-id").empty();
+  setData();
+  closeModalBox();
+}
+function updateContact() {
+  getFormData();
+  if (contactId !== null) {
+    for (var contact of data) {
+      if (contactId === contact.id) {
         contact.name = formData.fname.value;
         contact.email = formData.email.value;
         contact.phone = formData.phone.value;
       }
     }
-    tableRowIndex.parentNode.parentNode.cells[0].innerHTML = formData.fname.value;
-    tableRowIndex.parentNode.parentNode.cells[1].innerHTML = formData.email.value;
-    tableRowIndex.parentNode.parentNode.cells[2].innerHTML = ormData.phone.value;
+    table.innerHTML = "";
+    setData();
     contactId = null;
     tableRowIndex = null;
     formData = null;
-    closeModalBox(); 
-  } 
+    closeModalBox();
+  }
 }
 function deleteContact(rowNum, index) {
   if (confirm("Are you sure you want to delete this contact?")) {
-    for( var [i, contact] of data.entries()) {
-      if(index === contact.id) {
+    for (var [i, contact] of data.entries()) {
+      if (index === contact.id) {
         data.splice(i, 1);
       }
     }
@@ -77,25 +182,37 @@ function deleteContact(rowNum, index) {
   } else {
     return;
   }
-  if(table.rows.length === 0) {
-    table.style.display = "none";
-    dataNull.style.display = "";
+  dataEmptyCase();
+}
+function validation() {
+  var formError = {};
+  getFormData();
+  if(!formData.fname.value) {
+    formError.name = true;
   }
+  var mailformat = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
+if(!formData.email.value.match(mailformat)) {
+  formError.email = true;
+}
+var phoneFormat = "^\\d{10}$";
+if(!formData.phone.value.match(phoneFormat)) {
+  formError.phone = true;
+}
 }
 function getFormData() {
   formData = {
     fname: document.getElementById("fname"),
     email: document.getElementById("email"),
-    phone: document.getElementById("phone")
-  }
+    phone: document.getElementById("phone"),
+  };
 }
 function openModalBox(mode) {
-  if(mode === "add") {
+  if (mode === "add") {
     document.getElementById("contact-edit").style.display = "none";
     document.getElementById("contact-add").style.display = "inline-block";
     document.getElementById("contact-update").style.display = "none";
     document.getElementById("contact-save").style.display = "inline-block";
-  } else if(mode === "edit") {
+  } else if (mode === "edit") {
     document.getElementById("contact-edit").style.display = "inline-block";
     document.getElementById("contact-add").style.display = "none";
     document.getElementById("contact-update").style.display = "inline-block";
@@ -106,16 +223,22 @@ function openModalBox(mode) {
 function closeModalBox() {
   modal.style.display = "none";
 }
-window.onclick = function(event) {
+window.onclick = function (event) {
   if (event.target == modal) {
     closeModalBox();
+  }
+};
+function dataEmptyCase() {
+  if (table.rows.length === 0) {
+    table.style.display = "none";
+    dataNull.style.display = "block";
   }
 }
 function sideNav() {
   sideNavStatus = !sideNavStatus;
-  if(sideNavStatus) {
+  if (sideNavStatus) {
     document.getElementById("mySidenav").style.width = "250px";
-    if(screen.width > 500) {
+    if (screen.width > 500) {
       document.getElementById("containerId").style.marginLeft = "265px";
     }
   } else {
@@ -129,4 +252,5 @@ function init() {
   dataNull = document.getElementById("data-null-id");
   sideNav();
   setData();
+  dataEmptyCase();
 }

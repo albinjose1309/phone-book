@@ -149,6 +149,7 @@ a {
   padding: 10px 0;
   box-sizing: border-box;
   border-radius: 10px;
+  display: none;
 }
 .del-icon,
 .edt-icon {
@@ -209,10 +210,7 @@ a {
   margin-bottom: 20px;
   text-align: center;
 }
-.form-name input {
-  width: 43%;
-}
-.form-email input, .form-phone input{
+.form-email input, .form-phone input, .form-name input{
   width: 87%; 
   }
   .modal-box-body label{
@@ -242,6 +240,12 @@ a {
 }
 .modal-box-footer button:hover {
   color: #1a73e8;
+}
+.form-error {
+    
+}
+.name-error, .email-error, .phone-error {
+  display: none;
 }
 @media only screen and (max-width: 600px) {
   .help {
