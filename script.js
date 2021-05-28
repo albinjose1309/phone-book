@@ -140,8 +140,8 @@ function editContact(index, id) {
   formData = null;
 }
 function insertContact() {
-  console.log(dataCount);
   getFormData();
+  if(validation()) {
   data.push({
     id: dataCount,
     name: formData.fname.value,
@@ -151,11 +151,13 @@ function insertContact() {
   formData = null;
   $("#contact-list-id").empty();
   setData();
-  closeModalBox();
+  closeModalBox();   
+  }
 }
 function updateContact() {
   getFormData();
-  if (contactId !== null) {
+  if(validation()) {
+if (contactId !== null) {
     for (var contact of data) {
       if (contactId === contact.id) {
         contact.name = formData.fname.value;
@@ -169,6 +171,7 @@ function updateContact() {
     tableRowIndex = null;
     formData = null;
     closeModalBox();
+  }  
   }
 }
 function deleteContact(rowNum, index) {
@@ -185,19 +188,30 @@ function deleteContact(rowNum, index) {
   dataEmptyCase();
 }
 function validation() {
+  console.log("inside validation");
+  formData.fname.classList.remove("form-error");
+  formData.email.classList.remove("form-error");
+  formData.phone.classList.remove("form-error");
   var formError = {};
   getFormData();
   if(!formData.fname.value) {
     formError.name = true;
+    formData.fname.classList.add("form-error");
   }
-  var mailformat = "/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
-if(!formData.email.value.match(mailformat)) {
+
+  //not all regular expression with quotes don't work with test()!!
+
+  var mailformat = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
+if(!mailformat.test(formData.email.value)) {
   formError.email = true;
+  formData.email.classList.add("form-error");
 }
 var phoneFormat = "^\\d{10}$";
 if(!formData.phone.value.match(phoneFormat)) {
   formError.phone = true;
+  formData.phone.classList.add("form-error");
 }
+  return !(Object.keys(formError).length);
 }
 function getFormData() {
   formData = {
