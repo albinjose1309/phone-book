@@ -247,6 +247,10 @@ a {
 .form-error {
   border-bottom: 3px solid #ff0000 !important;
 }
+.profile-icon {
+  padding-right: 5px;
+  color: #202020;
+}
 @media only screen and (max-width: 600px) {
   .help {
     display: none;
